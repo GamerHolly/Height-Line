@@ -1,0 +1,467 @@
+@import "fonts";
+@import "null";
+
+$color-ffd17e: #ffd17e;
+$color-white: #ffffff;
+$color-1e1613: #1e1613;
+$font-famaly: "Montserrat", sans-serif;
+$font-bold: 700;
+$font-semibold: 600;
+$font-normal: 400;
+$fz-title: 40px;
+
+@mixin absolute {
+    position: absolute;
+}
+
+@mixin relative {
+    position: relative;
+}
+
+@mixin flexbox {
+    display: flex;
+}
+@mixin header_h2 {
+    line-height: 150%;
+    letter-spacing: 0.02em;
+    font-size: 20px;
+    width: 298px;
+    margin-left: 32px;
+}
+@mixin title {
+    font-size: $fz-title;
+    font-weight: $font-bold;
+    line-height: 49px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+body {
+    font-family: $font-famaly;
+}
+
+.wrapper {
+    overflow: hidden;
+    min-height: 100%;
+}
+.container {
+    max-width: 1714px;
+    margin: 0 auto;
+}
+
+
+
+.product {
+    background-color: #f3f3f3;
+    padding-bottom: 134px;
+    color: $color-1e1613;
+    
+    &__burger {
+        display: block;
+        position: fixed;
+        right: 0;
+        width: 30px;
+        height: 20px;
+        cursor: pointer;
+        margin-right: 450px;
+        z-index: 12;
+    
+    }
+    &__burger span {
+        @include absolute();
+        background-color: $color-ffd17e;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        top: 9px;
+    }
+    &__burger::before,
+    &__burger::after {
+        content: "";
+        background-color: $color-ffd17e;
+        @include absolute();
+        width: 100%;
+        height: 2px;
+        left: 0;
+        transition: all 0.5s ease;
+        
+    }
+    &__burger::before {
+        top: 0;
+    }
+    &__burger::after {
+        bottom: 0;
+    }
+    &__burger.active span {
+        transform: scale(0);
+        position: fixed;
+    }
+    &__burger.active::before {
+        transform: rotate(45deg);
+        top: 9px;
+        background-color: $color-ffd17e;
+    }
+    &__burger.active::after {
+        transform: rotate(-45deg);
+        bottom: 9px;
+        background-color: $color-ffd17e;
+    }
+    &__header {
+        @include flexbox();
+        align-items: center;
+        padding-top: 59px;
+        margin-bottom: 64px;
+        h2 {
+            color: $color-1e1613;
+            @include header_h2();
+        }
+    }
+
+    &__title h2 {
+        @include title();
+        margin-bottom: 34px;
+        margin-left: 100px;
+    }
+
+    // .product__row
+
+    &__row {
+        @include flexbox();
+        padding: 0 -15px;
+    }
+
+    // .product__column
+
+    &__column {
+        margin: 0 15px;
+        flex: 0 1 33.333%;
+        z-index: 5;
+    }
+
+    // .product__item
+
+    &__item {
+        background-color: $color-white;
+        @include flexbox();
+        flex-direction: column;
+        height: 650px;
+        transition: ease 0.5s;
+        cursor: pointer;
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+
+    // .product__image
+
+    &__image {
+        p {
+            @include absolute;
+            margin-top: 14px;
+            background-color: $color-ffd17e;
+            color: $color-1e1613;
+            padding: 8px 25px 8px 25px;
+            font-size: 14px;
+            line-height: 160%;
+        }
+    }
+
+    // .product__subtitle
+
+    &__subtitle {
+        font-weight: $font-semibold;
+        font-size: 17px;
+        line-height: 21px;
+        letter-spacing: 0.02em;
+        padding: 26px 0px 17px 28px;
+    }
+
+    // .product__list
+
+    &__list {
+        font-size: 14px;
+        line-height: 126.4%;
+        letter-spacing: 0.02em;
+        padding: 0px 0px 0px 28px;
+        width: 256px;
+        height: 148px;
+        li {
+            padding-bottom: 10px;
+            :last-child {
+                padding-bottom: 0px;
+            }
+        }
+    }
+
+    // .product__label
+
+    &__label {
+        padding: 0px 0px 0px 29px;
+        @include flexbox();
+        font-weight: $font-semibold;
+        font-size: 18px;
+        line-height: 22px;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        margin-top: 125px;
+    }
+    &__label p {
+        color: $color-ffd17e;
+    }
+    &__mainimage {
+        @include absolute;
+        top: 0;
+        right: 0;
+        z-index: 1;
+    }
+}
+.menu-nav {
+    overflow: auto;
+    display: block;
+    position: fixed;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    padding: 250px 0 0 0;
+    transition: all 0.5s ease;
+    z-index: 10;
+    &.active {
+        top: 0;
+    }
+    &__list {
+        display: block;
+        text-align: center;
+       
+    }
+    &__list li {
+       
+        margin: 40px 0 0 0;
+        padding: 0 0 30px 0;
+    }
+    &__list:first-child {
+        font-size: 25px;
+        margin: 0 20px 0 20px;
+    }
+    &__item {
+        margin: 0 auto;
+        color: #000000;
+        font-size: 20px;
+    }
+    &__list a {
+        border-bottom: 2px solid #ffd17e;
+    }
+}
+.product-border {
+    @include relative();
+    top: 25px;
+    width: 66px;
+    height: 4px;
+    background: $color-ffd17e;
+    left: 15px;
+}
+
+.set {
+    color: $color-white;
+    margin-left: -5px;
+    background: url("../img/mainSET.png");
+    padding-bottom: 90px;
+    &__header {
+        @include flexbox();
+        align-items: center;
+        padding-top: 59px;
+        margin-bottom: 64px;
+        h2 {
+            color: $color-white;
+            line-height: 150%;
+            letter-spacing: 0.02em;
+            font-size: 20px;
+            width: 298px;
+            margin-left: 32px;
+        }
+    }
+    &__title {
+        margin-bottom: 34px;
+        h2 {
+            color: $color-white;
+            @include title();
+            margin-left: 80px;
+        }
+    }
+
+    &__row {
+        @include flexbox();
+        padding: 0 -60px;
+    }
+    &__column {
+        &:nth-child(2),
+        &:nth-child(3) {
+            margin-left: 120px;
+        }
+    }
+
+    &__column:nth-child(2) &__item {
+        background: #382622;
+    }
+    &__column:nth-child(3) &__item {
+        background: #3e3331;
+    }
+
+    &__item {
+        background: #2a201d;
+        @include flexbox();
+        @include flexbox();
+        flex-direction: column;
+        height: 700px;
+        transition: ease 0.5s;
+        cursor: pointer;
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+    &__image {
+        p {
+            @include absolute;
+            margin-top: 14px;
+            background-color: $color-ffd17e;
+            color: $color-1e1613;
+            padding: 14px 18px 14px 18px;
+            font-size: 14px;
+            line-height: 160%;
+        }
+    }
+    &__subtitle {
+        font-weight: $font-bold;
+        font-size: 24px;
+        line-height: 130%;
+        padding: 32px 0px 13px 46px;
+    }
+    &__text {
+        padding: 0px 0px 19px 46px;
+        font-weight: $font-semibold;
+        font-size: 16px;
+        line-height: 160%;
+    }
+    &__list {
+        height: 170px;
+        font-size: 13px;
+        line-height: 122.5%;
+        letter-spacing: 0.02em;
+        padding: 0px 0px 106px 49px;
+        li {
+            padding-bottom: 15px;
+            :last-child {
+                padding-bottom: 0px;
+            }
+        }
+    }
+    &__label {
+        @include flexbox();
+        justify-content: space-between;
+        margin-top: 60px;
+        :first-child {
+            padding: 0 0 0 49px;
+            font-size: 20px;
+            line-height: 24px;
+            letter-spacing: 0.05em;
+        }
+        :last-child {
+            padding: 0 45px 0 0;
+            font-size: 25px;
+            line-height: 30px;
+            letter-spacing: 0.05em;
+            font-weight: $font-bold;
+        }
+    }
+}
+
+.set-border {
+    @include relative();
+    top: 25px;
+    width: 66px;
+    height: 4px;
+    background: $color-ffd17e;
+}
+
+.about-product {
+    background-color: #1d1513;
+    padding-bottom: 220px;
+
+    &__header {
+        @include flexbox();
+        align-items: center;
+        padding-top: 58px;
+        margin-left: 32px;
+        h2 {
+            color: $color-white;
+            line-height: 150%;
+            letter-spacing: 0.02em;
+            font-size: 20px;
+            width: 298px;
+            margin-left: 32px;
+        }
+    }
+
+    // .about-product__title
+
+    &__title {
+        width: 888px;
+        margin-bottom: 38px;
+        h2 {
+            color: $color-white;
+            margin-top: 69px;
+            @include title();
+            margin-left: 88px;
+        }
+    }
+    // .about-product__border
+
+    &__border {
+        @include relative();
+        top: 95px;
+        width: 66px;
+        height: 4px;
+        background: $color-ffd17e;
+    }
+
+    // .about-product__row
+
+    &__row {
+        @include flexbox();
+    }
+
+    // .about-product__column
+
+    &__column {
+    }
+
+    // .about-product__body
+
+    &__body {
+        color: $color-white;
+    }
+
+    // .about-product__text
+
+    &__text {
+        margin: 0 auto;
+        width: 900px;
+        color: $color-white;
+        padding-bottom: 39px;
+        font-size: 23px;
+        line-height: 150.28%;
+        letter-spacing: 0.02em;
+    }
+
+    // .about-product__image
+
+    &__image {
+        @include absolute;
+        right: 0;
+    }
+}
+
+//первый экран
+
+@import "media";
